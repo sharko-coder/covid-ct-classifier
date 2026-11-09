@@ -105,7 +105,7 @@ src/
   experiment.py    baseline / aug / mixed mitigation experiment
   threshold.py     threshold selection on validation data
   app.py           Streamlit demo
-outputs/           plots and result JSON files (model weights are not committed)
+outputs/           plots, result JSON files, and the demo model (resnet_mixed_best.pt)
 ```
 
 ## Setup
@@ -115,8 +115,10 @@ Requires Python 3.9+. Tested on an Apple Silicon Mac (uses the MPS GPU if availa
 ```bash
 python3 -m venv venv
 source venv/bin/activate
-pip install -r requirements.txt
+pip install -r requirements-full.txt
 ```
+
+`requirements.txt` is a slim list used for deploying the demo app; `requirements-full.txt` has everything needed for training and evaluation.
 
 ## Data
 
@@ -146,7 +148,7 @@ python src/threshold.py
 streamlit run src/app.py
 ```
 
-The demo app loads `outputs/resnet_mixed_best.pt`, which is created by `python src/experiment.py mixed`.
+The demo app loads `outputs/resnet_mixed_best.pt`, which is included in the repo (it can be recreated with `python src/experiment.py mixed`).
 
 ## References
 

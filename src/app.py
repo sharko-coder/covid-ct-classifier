@@ -17,7 +17,7 @@ st.set_page_config(page_title="COVID-19 CT Classifier", layout="centered")
 
 @st.cache_resource
 def load_model():
-    model = get_model("resnet")
+    model = get_model("resnet", pretrained=False)
     model.load_state_dict(torch.load(CKPT, map_location="cpu"))
     model.eval()
     store = {}
@@ -58,6 +58,7 @@ st.warning(
     "public datasets and has not been clinically validated. It must not be used to "
     "make health decisions. Real diagnosis requires PCR testing and a clinician."
 )
+st.caption("Privacy: please do not upload real patient scans. Use public or sample images only.")
 
 model, store = load_model()
 file = st.file_uploader("Upload a chest CT slice (PNG/JPG)", type=["png", "jpg", "jpeg"])

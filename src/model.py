@@ -30,12 +30,13 @@ class SimpleCNN(nn.Module):
         return self.head(self.features(x))
 
 
-def resnet18_tl(num_classes=2):
-    """Pretrained ResNet18 fine-tuned on CT scans."""
-    m = models.resnet18(weights=models.ResNet18_Weights.DEFAULT)
+def resnet18_tl(num_classes=2, pretrained=True):
+    """ResNet18, optionally starting from ImageNet weights."""
+    weights = models.ResNet18_Weights.DEFAULT if pretrained else None
+    m = models.resnet18(weights=weights)
     m.fc = nn.Sequential(nn.Dropout(0.4), nn.Linear(m.fc.in_features, num_classes))
     return m
 
 
-def get_model(name):
-    return SimpleCNN() if name == "cnn" else resnet18_tl()
+def get_model(name, pretrained=True):
+    return SimpleCNN() if name == "cnn" else resnet18_tl(pretrained=pretrained)
