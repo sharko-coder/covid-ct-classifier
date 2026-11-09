@@ -4,6 +4,8 @@ A deep learning pipeline that classifies chest CT slices as COVID-19 or non-COVI
 
 > **Educational project. Not a medical device.** This model has not been clinically validated and must not be used to make health decisions. Real diagnosis requires PCR testing and a clinician.
 
+**Live demo:** https://covid-ct-classifier.streamlit.app
+
 ## Summary
 
 - Built a **CNN from scratch** and fine-tuned a **pretrained ResNet18**; ResNet18 reached 98.4% accuracy (AUC 0.995) on a held-out split of the Kaggle dataset.
